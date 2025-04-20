@@ -1,0 +1,58 @@
+openapi: "3.0.3"
+info:
+  title: "JSON API sample"
+  description: "A JSON API that allows you to view and add customers"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /demo/customer:
+    post:
+      description: "Creates a new customer"
+      requestBody:
+        description: "A JSON object containing customer information"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json:  # 修改为匹配代码返回的JSON格式
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /demo/customer/{id}:
+    get:
+      description: "Returns a customer by its ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"    # 匹配代码中的Int类型
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:  # 统一使用JSON格式响应
+              schema:
+                $ref: "#/components/schemas/Customer"
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+        - id
+        - firstName
+        - lastName
