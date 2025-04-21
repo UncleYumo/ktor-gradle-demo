@@ -24,6 +24,7 @@ fun main(args: Array<String>) {
     embeddedServer(Netty, port = ApplicationContext.SERVER_PORT) {
         run()
     }.start(wait = true)
+
 }
 
 private fun Application.run() {
@@ -41,10 +42,9 @@ private fun Application.run() {
 
 object ApplicationContext {
     const val SERVER_PORT: Int = 8085
-    const val SERVER_HOST: String = "localhost"
+    const val SERVER_HOST: String = "14.103.207.16"
     const val SERVER_NAME: String = "ktor-graphql-demo"
     const val SWAGGER_UI_URL: String = "/swagger"
     const val WEBSOCKET_ESP32_KET: String = "esp32"
     const val WEBSOCKET_CLIENT_KET: String = "client"
-
 }

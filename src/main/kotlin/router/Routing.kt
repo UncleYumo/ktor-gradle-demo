@@ -91,7 +91,7 @@ fun Application.websocketRouting() {
             try {
                 for (frame in incoming) {
                     when (frame) {
-// 修改后的Frame.Text处理部分
+                        // 修改后的Frame.Text处理部分
                         is Frame.Text -> {
                             val text = frame.readText()
                             log.info("接收到Text消息: $text")
@@ -119,8 +119,6 @@ fun Application.websocketRouting() {
                         // 修改后的Frame.Binary处理部分
                         is Frame.Binary -> {
                             val bytes = frame.readBytes()
-                            log.info("接收到Binary消息")
-
                             // 直接转发二进制数据
                             sessionsClient.forEach { client ->
                                 if (client.isActive) {

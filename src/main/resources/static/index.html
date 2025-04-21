@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Ktor Video Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ktor视频流媒体</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>ESP32 Camera Stream</h1>
-    <div id="video-container">
-        <img id="video-frame" src="" alt="Live Stream">
-        <div id="no-data">No signal</div>
+    <header class="status-bar">
+        <div id="connection-status" class="status-disconnected">网络状态：已断开</div>
+        <div id="stream-info">
+            <span id="fps-counter">帧率：0 FPS</span>
+            <span id="resolution">分辨率：0x0</span>
+        </div>
+    </header>
+
+    <div class="control-panel">
+        <div class="control-group">
+            <label>镜像：</label>
+            <button id="mirror-btn" class="btn">水平翻转</button>
+        </div>
+        <div class="control-group">
+            <label>亮度：</label>
+            <input type="range" id="brightness" min="-100" max="100" value="0">
+            <input type="number" id="brightness-value" min="-100" max="100" value="0">
+        </div>
+        <div class="control-group">
+            <label>对比度：</label>
+            <input type="range" id="contrast" min="0" max="200" value="100">
+            <input type="number" id="contrast-value" min="0" max="200" value="100">
+        </div>
+    </div>
+
+    <div class="video-wrapper">
+        <div id="video-container">
+            <canvas id="processing-canvas" style="display:none"></canvas>
+            <img id="video-frame" src="" alt="实时视频流">
+            <div id="no-data">无信号</div>
+        </div>
     </div>
 </div>
 <script src="./js/main.js"></script>
